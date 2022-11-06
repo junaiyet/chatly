@@ -3,9 +3,12 @@ import {AiOutlineEyeInvisible,AiOutlineEye} from 'react-icons/ai'
 import { getAuth, createUserWithEmailAndPassword,sendEmailVerification } from "firebase/auth";
 import { ToastContainer, toast } from 'react-toastify';
 import { BallTriangle } from  'react-loader-spinner'
+import {  Link,useNavigate  } from "react-router-dom";
+
 
 function Registation() {
   const auth = getAuth();
+  let navigate = useNavigate()
   let [email , setEmail] = useState("")
   let [fullname , setFullName] = useState("")
   let [password , setPassword] = useState("")
@@ -63,6 +66,9 @@ function Registation() {
         setPassword("")
         sendEmailVerification(auth.currentUser)
         setLoading(false)
+        setTimeout(()=>{
+             navigate("/login")
+        },2000)
       }).catch((error)=>{
         // setEmailerr(error.code);
         if(error.code.includes("auth/email-already-in-use")){
@@ -111,7 +117,7 @@ function Registation() {
                   {loading? <div className="flex justify-center w-96 mt-5"><BallTriangle height={100}width={100}radius={5}color="#5F35F5"ariaLabel="ball-triangle-loading"wrapperClass={{}}wrapperStyle=""visible={true}/></div> :
                      <button className='w-96 bg-primary font-nunito font-semibold text-xl rounded-full text-white mt-12	py-3.5 px-5' onClick={handleSubmit}>Sign up</button>             
                    }  
-            <p className='text-center w-96 font-open font-normal text-sm mt-9'>Already  have an account ? <span className='font-bold text-[#EA6C00]'>Sign In</span></p>
+            <p className='text-center w-96 font-open font-normal text-sm mt-9'>Already  have an account ? <Link to={"/login"} className='font-bold text-[#EA6C00]'>Sign In</Link></p>
             </div>
         </div>
         <div className="w-2/4">
