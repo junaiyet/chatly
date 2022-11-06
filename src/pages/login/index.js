@@ -80,26 +80,26 @@ function Login() {
 
     }
   return (
-    <div className="flex">
+    <div className="md:flex px-3 md:px-0">
     <ToastContainer position="bottom-center" theme="dark" />
-      <div className="w-2/4 flex justify-end">
-          <div className="mr-40 mt-40	">
-          <h3 className='font-nunito font-bold text-4xl text-heading mb-3.5'>Login to your account!</h3>
+      <div className="md:w-2/4 w-full md:flex justify-end ">
+          <div className="md:mr-0 lg:mr-16  xl:mt-40 	mt-20 px-4">
+          <h3 className='font-nunito text-center md:text-left font-bold text-3xl lg:text-4xl text-heading mb-2 md:mb-3.5'>Login to your account!</h3>
           <div className="img">
             <img onClick={handleGoogleSignIn} src="images/google.png" alt="" />
           </div>
           {success && (
-             <p className='font-nunito font-semibold text-2xl text-heading bg-green-600 text-white   mt-1.5 p-2.5'>{success}</p>
+             <p className='font-nunito font-semibold text-2xl text-heading bg-green-600 text-white  rounded-sm mt-1.5 p-2.5'>{success}</p>
            )}
-          <div className="relative mt-16 w-96">
-          <input type="email" className='border-b border-solid border-secondary  pt-6 pb-3   w-96 outline-0	' value={email} onChange={handleEmail} />
+          <div className="relative md:mt-16 mt-8 lg:w-96 w-full">
+          <input type="email" className='border border-solid border-secondary  py-6 px-14 rounded-lg lg:w-96 w-full	' value={email} onChange={handleEmail} />
            <p className='font-nunito font-semibold text-sm text-heading absolute left-0 top-[-10px]  bg-white'>Email Address</p>
            {emailerr && (
              <p className='font-nunito font-semibold text-sm text-heading bg-red-600 text-white   mt-1.5 p-2.5'>{emailerr}</p>
            )}
           </div>
-          <div className="relative mt-16 w-96">
-          <input type={passwordshow?"text":"password"} className='border-b border-solid border-secondary  pt-6 pb-3  w-96 outline-0	' value={password} onChange={handlePassword} />
+          <div className="relative md:mt-16 mt-8 lg:w-96 w-full">
+          <input type={passwordshow?"text":"password"} className='border border-solid border-secondary  py-6 px-14 rounded-lg lg:w-96 w-full' value={password} onChange={handlePassword} />
           {passwordshow?(<AiOutlineEye className='absolute top-7	 right-5'  onClick={()=>setPasswordShow(!passwordshow)}/> ) : ( <AiOutlineEyeInvisible className='absolute top-7	 right-5' onClick={()=>setPasswordShow(!passwordshow)}/>)
           }
          
@@ -109,15 +109,15 @@ function Login() {
            )}
           </div>
        
-                {loading? <div className="flex justify-center w-96 mt-5"><BallTriangle height={100}width={100}radius={5}color="#5F35F5"ariaLabel="ball-triangle-loading"wrapperClass={{}}wrapperStyle=""visible={true}/></div> :
-                   <button className='w-96 bg-primary font-nunito font-semibold text-xl rounded text-white mt-12	py-3.5 px-5' onClick={handleSubmit}>Login to Continue</button>             
+                {loading? <div className="flex justify-center lg:w-96 w-full mt-5"><BallTriangle height={100}width={100}radius={5}color="#5F35F5"ariaLabel="ball-triangle-loading"wrapperClass={{}}wrapperStyle=""visible={true}/></div> :
+                   <button className='lg:w-96 w-full bg-primary font-nunito font-semibold text-xl rounded-full text-white md:mt-12 mt-8	py-3.5 px-5' onClick={handleSubmit}>Login to Continue</button>             
                  }  
-          <p className='text-left w-96 font-open font-normal text-sm mt-9'>Don’t have an account ?<Link to={"/registation"} className='font-bold text-[#EA6C00]'>Sign up</Link></p>
-          <p className='text-center w-96 font-open font-normal text-sm mt-5'><Link to={"/forgotpassword"} className='font-bold text-[#EA6C00]'>Forgot Password</Link></p>
+          <p className='text-center mb-6 lg:w-96 w-full font-open font-normal text-sm md:mt-9 mt-4'>Don’t have an account ?<Link to={"/registation"} className='font-bold text-[#EA6C00]'>Sign up</Link></p>
+          <p className='text-center mb-6 lg:w-96 w-full font-open font-normal text-sm md:mt-9 mt-4'><Link to={"/forgotpassword"} className='font-bold text-[#EA6C00]'>Forgot Password</Link></p>
           </div>
       </div>
-      <div className="w-2/4">
-          <img className='w-full h-screen object-cover' src="images/login.png" alt="" />
+      <div className="w-2/4 hidden md:block max-lg:hidden ">
+          <img className='w-full md:h-screen lg:h-screen h-full object-cover' src="images/login.png" alt="" />
       </div>
   </div>
   )

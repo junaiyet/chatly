@@ -80,31 +80,32 @@ function Registation() {
     }
   }
   return (
-    <div className="flex">
+    <div className="md:flex px-3 md:px-0">
       <ToastContainer position="bottom-center" theme="dark" />
-        <div className="w-2/4 flex justify-end">
-            <div className="mr-16 mt-40	">
-            <h3 className='font-nunito font-bold text-4xl text-heading mb-3.5'>Get started with easily register</h3>
-            <p className='font-nunito font-normal text-xl text-secondary '>Free register and you can enjoy it</p>
+        <div className="md:w-2/4 w-full md:flex justify-end ">
+            <div className="md:mr-0 lg:mr-16  xl:mt-40 	mt-7 px-4">
+            <h3 className='font-nunito text-center md:text-left font-bold text-3xl lg:text-4xl text-heading mb-2 md:mb-3.5'>Get started with easily register</h3>
+            <p className='font-nunito font-normal 
+            text-xl text-secondary text-center md:text-left'>Free register and you can enjoy it</p>
             {success && (
                <p className='font-nunito font-semibold text-2xl text-heading bg-green-600 text-white  rounded-sm mt-1.5 p-2.5'>{success}</p>
              )}
-            <div className="relative mt-16 w-96">
-            <input type="email" className='border border-solid border-secondary  py-6 px-14 rounded-lg w-96' value={email} onChange={handleEmail} />
+            <div className="relative md:mt-16 mt-8 lg:w-96 w-full">
+            <input type="email" className='border border-solid border-secondary  py-6 px-14 rounded-lg lg:w-96 w-full' value={email} onChange={handleEmail} />
              <p className='font-nunito font-semibold text-sm text-heading absolute left-[40px] top-[-10px] px-4 bg-white'>Email Address</p>
              {emailerr && (
                <p className='font-nunito font-semibold text-sm text-heading bg-red-600 text-white  rounded-sm mt-1.5 p-2.5'>{emailerr}</p>
              )}
             </div>
-            <div className="relative mt-16 w-96">
-            <input type="text" className='border border-solid border-secondary  py-6 px-14 rounded-lg w-96' value={fullname} onChange={handleFullName} />
+            <div className="relative md:mt-16 mt-8 lg:w-96 w-full">
+            <input type="text" className='border border-solid border-secondary  py-6 px-14 rounded-lg lg:w-96 w-full' value={fullname} onChange={handleFullName} />
              <p className='font-nunito font-semibold text-sm text-heading absolute left-[40px] top-[-10px] px-4 bg-white'>Full name</p>
              {fullnameerr && (
                <p className='font-nunito font-semibold text-sm text-heading bg-red-600 text-white rounded-sm mt-1.5 p-2.5'>{fullnameerr}</p>
              )}
             </div>
-            <div className="relative mt-16 w-96">
-            <input type={passwordshow?"text":"password"} className='border border-solid border-secondary  py-6 px-14 rounded-lg w-96' value={password} onChange={handlePassword} />
+            <div className="relative md:mt-16 mt-8 lg:w-96 w-full">
+            <input type={passwordshow?"text":"password"} className='border border-solid border-secondary  py-6 px-14 rounded-lg lg:w-96 w-full' value={password} onChange={handlePassword} />
             {passwordshow?(<AiOutlineEye className='absolute top-7	 right-5'  onClick={()=>setPasswordShow(!passwordshow)}/> ) : ( <AiOutlineEyeInvisible className='absolute top-7	 right-5' onClick={()=>setPasswordShow(!passwordshow)}/>)
             }
            
@@ -114,14 +115,14 @@ function Registation() {
              )}
             </div>
          
-                  {loading? <div className="flex justify-center w-96 mt-5"><BallTriangle height={100}width={100}radius={5}color="#5F35F5"ariaLabel="ball-triangle-loading"wrapperClass={{}}wrapperStyle=""visible={true}/></div> :
-                     <button className='w-96 bg-primary font-nunito font-semibold text-xl rounded-full text-white mt-12	py-3.5 px-5' onClick={handleSubmit}>Sign up</button>             
+                  {loading? <div className="flex justify-center lg:w-96 w-full mt-5"><BallTriangle height={100}width={100}radius={5}color="#5F35F5"ariaLabel="ball-triangle-loading"wrapperClass={{}}wrapperStyle=""visible={true}/></div> :
+                     <button className='lg:w-96 w-full bg-primary font-nunito font-semibold text-xl rounded-full text-white md:mt-12 mt-8	py-3.5 px-5' onClick={handleSubmit}>Sign up</button>             
                    }  
-            <p className='text-center w-96 font-open font-normal text-sm mt-9'>Already  have an account ? <Link to={"/login"} className='font-bold text-[#EA6C00]'>Sign In</Link></p>
+            <p className='text-center mb-6 lg:w-96 w-full font-open font-normal text-sm md:mt-9 mt-4'>Already  have an account ? <Link to={"/login"} className='font-bold text-[#EA6C00]'>Sign In</Link></p>
             </div>
         </div>
-        <div className="w-2/4">
-            <img className='w-full h-screen object-cover' src="images/registation.png" alt="" />
+        <div className="w-2/4 hidden md:block max-lg:hidden ">
+            <img className='w-full md:h-screen lg:h-screen h-full object-cover' src="images/registation.png" alt="" />
         </div>
     </div>
   )
