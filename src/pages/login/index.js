@@ -4,10 +4,13 @@ import { getAuth, signInWithEmailAndPassword,signInWithPopup, GoogleAuthProvider
 import { ToastContainer, toast } from 'react-toastify';
 import { BallTriangle } from  'react-loader-spinner'
 import {  Link,useNavigate  } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import { userLoginInfo } from '../../slices/userSlice';
 function Login() {
     const auth = getAuth();
     const provider = new GoogleAuthProvider();
     let navigate = useNavigate()
+    const dispatch = useDispatch()
     let [email , setEmail] = useState("")
     let [password , setPassword] = useState("")
     let [emailerr , setEmailerr] = useState("")
@@ -51,10 +54,13 @@ function Login() {
       if(email  && password && /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/.test(email)){
         setLoading(true)
         signInWithEmailAndPassword(auth, email, password)
-        .then(() => {
+        .then((user) => {
             setLoading(false)
             toast.success("Login Successfull. Wait for Rederection")
-            setTimeout(()=>{
+          // console.log("Login user Information",user.user)
+          dispatch(userLoginInfo(user.user)) 
+          localStorage.setItem("userInfo",JSON.stringify(user))
+          setTimeout(()=>{
                 navigate("/")
             },2000)
         })
