@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import {AiOutlineEyeInvisible,AiOutlineEye} from 'react-icons/ai'
-import { getAuth, createUserWithEmailAndPassword,sendEmailVerification } from "firebase/auth";
+import { getAuth, createUserWithEmailAndPassword,sendEmailVerification,updateProfile } from "firebase/auth";
 import { ToastContainer, toast } from 'react-toastify';
 import { BallTriangle } from  'react-loader-spinner'
 import {  Link,useNavigate  } from "react-router-dom";
@@ -59,16 +59,25 @@ function Registation() {
     // }
     if(email && fullname && password && /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,4})+$/.test(email)){
       setLoading(true)
-      createUserWithEmailAndPassword(auth,email,password).then(()=>{
-        toast.success("Registation succesfull. please varify your email !");
-        setEmail("")
-        setFullName("")
-        setPassword("")
-        sendEmailVerification(auth.currentUser)
-        setLoading(false)
-        setTimeout(()=>{
-             navigate("/login")
-        },2000)
+      createUserWithEmailAndPassword(auth,email,password).then((user)=>{
+        updateProfile(auth.currentUser, {
+          displayName: fullname, photoURL: "images/demoprofile.png"
+        }).then(() => {
+          toast.success("Registation succesfull. please varify your email !");
+          console.log(user)
+          setEmail("")
+          setFullName("")
+          setPassword("")
+          sendEmailVerification(auth.currentUser)
+          setLoading(false)
+          setTimeout(()=>{
+               navigate("/login")
+          },2000)
+        }).catch((error) => {
+          console.log(error)
+        });
+        
+       
       }).catch((error)=>{
         // setEmailerr(error.code);
         if(error.code.includes("auth/email-already-in-use")){
