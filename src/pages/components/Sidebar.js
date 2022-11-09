@@ -93,7 +93,7 @@ function Sidebar() {
        <div className="h-screen bg-primary absolute top-0 left-0 w-full z-50 flex justify-center items-center">
         <div className="w-2/4 bg-white rounded-lg p-5">
           <h2 className='font-nunito text-center md:text-left font-bold text-3xl lg:text-4xl text-heading mb-2 md:mb-3.5'>Upload Your Profile</h2>
-          <img className='w-28 h-28' style={{ width: "100%" }} src={cropData} alt="cropped" />
+          {/* <img className='w-28 h-28' style={{ width: "100%" }} src={cropData} alt="cropped" /> */}
           <input onChange={handleProfileUpload} className='mt-8' type="file" />
           <br />
           <br />
