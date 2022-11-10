@@ -4,10 +4,12 @@ import { getAuth, createUserWithEmailAndPassword,sendEmailVerification,updatePro
 import { ToastContainer, toast } from 'react-toastify';
 import { BallTriangle } from  'react-loader-spinner'
 import {  Link,useNavigate  } from "react-router-dom";
+import { getDatabase, ref, set } from "firebase/database";
 
 
 function Registation() {
   const auth = getAuth();
+  const db = getDatabase();
   let navigate = useNavigate()
   let [email , setEmail] = useState("")
   let [fullname , setFullName] = useState("")
@@ -73,6 +75,12 @@ function Registation() {
           setTimeout(()=>{
                navigate("/login")
           },2000)
+        }).then(()=>{
+          console.log(user.user.displayName)
+          set(ref(db, 'users/'+user.user.uid), {
+          username: user.user.displayName,
+          email: user.user.email,
+        });
         }).catch((error) => {
           console.log(error)
         });

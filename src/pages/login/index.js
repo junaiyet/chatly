@@ -6,8 +6,12 @@ import { BallTriangle } from  'react-loader-spinner'
 import {  Link,useNavigate  } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { userLoginInfo } from '../../slices/userSlice';
+import { getDatabase, ref, set } from "firebase/database";
+
+
 function Login() {
     const auth = getAuth();
+    const db = getDatabase();
     const provider = new GoogleAuthProvider();
     let navigate = useNavigate()
     const dispatch = useDispatch()
@@ -82,6 +86,12 @@ function Login() {
     let handleGoogleSignIn = ()=>{
         signInWithPopup(auth, provider).then(()=>{
             navigate("/")
+        }).then(()=>{
+          // console.log(user.user.displayName)
+        //   set(ref(db, 'users/'+user.user.uid), {
+        //   username: user.user.displayName,
+        //   email: user.user.email,
+        // });
         })
 
     }
@@ -95,13 +105,13 @@ function Login() {
             <img onClick={handleGoogleSignIn} src="images/google.png" alt="" />
           </div>
           {success && (
-             <p className='font-nunito font-semibold text-2xl text-heading bg-green-600 text-white  rounded-sm mt-1.5 p-2.5'>{success}</p>
+             <p className='font-nunito font-semibold text-2xl text-heading bg-green-600   rounded-sm mt-1.5 p-2.5'>{success}</p>
            )}
           <div className="relative md:mt-16 mt-8 lg:w-96 w-full">
           <input type="email" className='border border-solid border-secondary  py-6 px-14 rounded-lg lg:w-96 w-full	' value={email} onChange={handleEmail} />
            <p className='font-nunito font-semibold text-sm text-heading absolute left-0 top-[-10px]  bg-white'>Email Address</p>
            {emailerr && (
-             <p className='font-nunito font-semibold text-sm text-heading bg-red-600 text-white   mt-1.5 p-2.5'>{emailerr}</p>
+             <p className='font-nunito font-semibold text-sm text-heading bg-red-600    mt-1.5 p-2.5'>{emailerr}</p>
            )}
           </div>
           <div className="relative md:mt-16 mt-8 lg:w-96 w-full">
@@ -111,7 +121,7 @@ function Login() {
          
            <p className='font-nunito font-semibold text-sm text-heading absolute left-0 top-[-10px]  bg-white'>Password</p>
            {passworderr && (
-             <p className='font-nunito font-semibold text-sm text-heading bg-red-600 text-white   mt-1.5 p-2.5'>{passworderr}</p>
+             <p className='font-nunito font-semibold text-sm text-heading bg-red-600  mt-1.5 p-2.5'>{passworderr}</p>
            )}
           </div>
        
