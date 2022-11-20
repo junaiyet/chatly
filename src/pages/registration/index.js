@@ -118,7 +118,7 @@ function Registation() {
             <input type="text" className='border border-solid border-secondary  py-6 px-14 rounded-lg lg:w-96 w-full' value={fullname} onChange={handleFullName} />
              <p className='font-nunito font-semibold text-sm text-heading absolute left-[40px] top-[-10px] px-4 bg-white'>Full name</p>
              {fullnameerr && (
-               <p className='font-nunito font-semibold text-sm text-heading bg-red-600 text-white rounded-sm mt-1.5 p-2.5'>{fullnameerr}</p>
+               <p className='font-nunito font-semibold text-sm text-heading bg-red-600  rounded-sm mt-1.5 p-2.5'>{fullnameerr}</p>
              )}
             </div>
             <div className="relative md:mt-16 mt-8 lg:w-96 w-full">
@@ -128,7 +128,7 @@ function Registation() {
            
              <p className='font-nunito font-semibold text-sm text-heading absolute left-[40px] top-[-10px] px-4 bg-white'>Password</p>
              {passworderr && (
-               <p className='font-nunito font-semibold text-sm text-heading bg-red-600 text-white  rounded-sm mt-1.5 p-2.5'>{passworderr}</p>
+               <p className='font-nunito font-semibold text-sm text-heading bg-red-600   rounded-sm mt-1.5 p-2.5'>{passworderr}</p>
              )}
             </div>
          
